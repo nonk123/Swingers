@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.28.0 FATAL_ERROR)
 project(Swingers
     VERSION 0.1.0)
 
-if(CMAKE_SYSTEM_NAME MATCHES "Emscripten")
+if(EMSCRIPTEN)
     set(CMAKE_EXECUTABLE_SUFFIX ".html")
     set(PLATFORM Web CACHE INTERNAL "")
 endif()
@@ -12,8 +12,8 @@ include(FetchContent)
 set(FETCHCONTENT_QUIET OFF)
 
 FetchContent_Declare(raylib
-    GIT_REPOSITORY https://github.com/raysan5/raylib.git
-    GIT_TAG 6.0
+    GIT_REPOSITORY https://github.com/nonk123/raylib.git
+    GIT_TAG 041148384a1ace990a7c890cc9e0ff608744e502
     EXCLUDE_FROM_ALL)
 
 FetchContent_Declare(S_fixed
@@ -23,7 +23,7 @@ FetchContent_Declare(S_fixed
 
 FetchContent_Declare(NutBlast
     GIT_REPOSITORY https://github.com/Schwungus/NutBlast.git
-    GIT_TAG 19633b12f4a66a11ef5578a1a225025e286c4045
+    GIT_TAG 0d927e834bab3658d76fbbe4bd9296c920c0162e
     EXCLUDE_FROM_ALL)
 
 FetchContent_MakeAvailable(raylib S_fixed NutBlast)
@@ -39,6 +39,6 @@ target_include_directories(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME} PRIVATE raylib S_fixed NutBlast)
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_23)
 
-if(CMAKE_SYSTEM_NAME MATCHES "Emscripten")
-    target_link_options(${PROJECT_NAME} PRIVATE -sASYNCIFY -sEXPORTED_RUNTIME_METHODS=HEAPF32,HEAPU32,HEAPU8)
+if(EMSCRIPTEN)
+    target_link_options(${PROJECT_NAME} PRIVATE "-sEXPORTED_RUNTIME_METHODS=HEAPF32,HEAPU32,HEAPU8,ccall")
 endif()

@@ -32,12 +32,6 @@ IncludeBlocks: Regroup
 IncludeIsMainRegex: "a{999}" # no main includes
 SortIncludes: CaseSensitive
 IncludeCategories:
-  - Regex: "^<rtc/"
-    Priority: 7
-  - Regex: "^<ray"
-    Priority: 10
-  - Regex: "^<nloh"
-    Priority: 15
   - Regex: "^<S_"
     Priority: 20
   - Regex: "^<Nut"
