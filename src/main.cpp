@@ -37,6 +37,10 @@ static void generate_name() {
     NutBlast_SetPlayerField(NUTBLAST_FIELD_PLAYER_NAME, TextFormat("Player%04d", dist(mt)));
 }
 
+namespace sh {
+    Shader lighting = {0};
+};
+
 int main(int, char*[]) {
     NutBlast_SetGameID(FULL_GAME_TITLE);
     NutBlast_SetLogger(nutblast_raylib_logger);
@@ -54,6 +58,8 @@ int main(int, char*[]) {
 
     SetExitKey(KEY_NULL);
     SetTargetFPS(TICKRATE);
+
+    sh::lighting = LoadShader("assets/lighting.vs", "assets/lighting.fs");
 
     while (!WindowShouldClose()) {
         static Clock join_clock(1.0);
@@ -73,7 +79,11 @@ int main(int, char*[]) {
         ClearBackground(RAYWHITE);
 
         BeginMode3D(::camera);
+
+        BeginShaderMode(sh::lighting);
         DrawCube({0.f, 0.f, 0.f}, 1.f, 1.f, 1.f, RED);
+        EndShaderMode();
+
         EndMode3D();
 
         const int fs = 30;

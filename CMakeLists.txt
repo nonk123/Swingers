@@ -40,5 +40,8 @@ target_link_libraries(${PROJECT_NAME} PRIVATE raylib S_fixed NutBlast)
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_23)
 
 if(EMSCRIPTEN)
-    target_link_options(${PROJECT_NAME} PRIVATE "-sEXPORTED_RUNTIME_METHODS=HEAPF32,HEAPU32,HEAPU8,ccall")
+    target_link_options(${PROJECT_NAME}
+        PRIVATE
+            -sEXPORTED_RUNTIME_METHODS=HEAPF32,HEAPU32,HEAPU8,ccall
+            --preload-file ${CMAKE_CURRENT_SOURCE_DIR}/assets@assets)
 endif()
