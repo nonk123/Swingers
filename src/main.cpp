@@ -55,6 +55,7 @@ int main(int, char*[]) {
     NutBlast_SetGameID(FULL_GAME_TITLE);
     defer([] { NutBlast_Cleanup(); });
 
+    init();
     NutBlast_OnDisconnected(on_nutblast_disconnected);
 
     generate_name();
