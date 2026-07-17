@@ -23,7 +23,7 @@ FetchContent_Declare(S_fixed
 
 FetchContent_Declare(NutBlast
     GIT_REPOSITORY https://github.com/Schwungus/NutBlast.git
-    GIT_TAG 0d927e834bab3658d76fbbe4bd9296c920c0162e
+    GIT_TAG c0acc946315aa932308a59b767632e0ff8d0a17a
     EXCLUDE_FROM_ALL)
 
 FetchContent_MakeAvailable(raylib S_fixed NutBlast)
