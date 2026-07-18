@@ -3,6 +3,8 @@ cmake_minimum_required(VERSION 3.28.0 FATAL_ERROR)
 project(Swingers
     VERSION 0.1.0)
 
+set(CMAKE_CXX_SCAN_FOR_MODULES OFF)
+
 if(EMSCRIPTEN)
     set(CMAKE_EXECUTABLE_SUFFIX ".html")
     set(PLATFORM Web CACHE INTERNAL "")
